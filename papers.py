@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 
 """ Computer-based immigration office for Kanadia """
@@ -32,8 +33,18 @@ def decide(input_file, watchlist_file, countries_file):
 
 def valid_passport_format(passport_number):
     """
-    Checks whether a pasport number is five sets of five alpha-number characters separated by dashes
+    Checks whether a passport number is five sets of five alpha-number characters separated by dashes
     :param passport_number: alpha-numeric string
+
+    if type(passport_number) is str:
+
+        #Check that str is five characters
+        if passport_number is five characters return True
+
+    else:
+        #Return False
+        Print(False)
+
     :return: Boolean; True if the format is valid, False otherwise
     """
     passport_format = re.compile('.{5}-.{5}-.{5}-.{5}-.{5}')
