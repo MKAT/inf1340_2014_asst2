@@ -12,11 +12,23 @@ __license__ = "MIT License"
 __status__ = "Prototype"
 
 # imports one per line
-import re
-import datetime
+
 import json
 
-#this is a test
+with open("example_entries.json", "r") as file_reader:
+    file_contents_example_entries = file_reader.read()
+    json_contents = json.loads(file_contents_example_entries)
+    print(file_contents_example_entries)
+
+with open("countries.json", "r") as file_reader:
+    file_contents_countries = file_reader.read()
+    json_contents = json.loads (file_contents_countries)
+    print(file_contents_countries)
+
+with open("watchlist.json", "r") as file_reader:
+    file_contents_watchlist = file_reader.read()
+    json_contents = json.loads (file_contents_watchlist)
+    print(file_contents_watchlist)
 
 def decide(input_file, watchlist_file, countries_file):
     """
@@ -35,15 +47,6 @@ def valid_passport_format(passport_number):
     """
     Checks whether a passport number is five sets of five alpha-number characters separated by dashes
     :param passport_number: alpha-numeric string
-
-    if type(passport_number) is str:
-
-        #Check that str is five characters
-        if passport_number is five characters return True
-
-    else:
-        #Return False
-        Print(False)
 
     :return: Boolean; True if the format is valid, False otherwise
     """
