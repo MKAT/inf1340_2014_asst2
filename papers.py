@@ -88,14 +88,10 @@ def decide(input_file, watchlist_file, countries_file):
 
 #after this step It then goes to be secondarily processed for other visa parameters
 
-        """
-        entry_reason is "returning" == True:
-        for entry_reason in ('example_entries.json'):
-            return(entry_reason("returning"))
-        """
-
-
-
+"""
+entry_reason is "returning" == True:
+for entry_reason in ('example_entries.json'):
+ return(entry_reason("returning"))"""
 
             #If reason for entry is visit and the traveler's country requires a visa, visitor visa required
             #entry_reason is
