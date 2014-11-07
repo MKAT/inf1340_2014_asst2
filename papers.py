@@ -75,6 +75,9 @@ def decide(input_file, watchlist_file, countries_file):
                 return ['Accept']
             print("returning home to KAN")
 
+
+#If home country is not KAN, check to see reason for entry
+
         elif:
         entry_reason =check_entry_reason is(traveler("visit"))
          return ['secondary']
@@ -92,7 +95,7 @@ def decide(input_file, watchlist_file, countries_file):
         """
 
 
-        #If home country is not KAN, check to see reason for entry
+
 
             #If reason for entry is visit and the traveler's country requires a visa, visitor visa required
             #entry_reason is
