@@ -14,7 +14,7 @@ __status__ = "Prototype"
 # imports one per line
 
 import json
-
+#The below calls the json files to be read
 with open("example_entries.json", "r") as file_reader:
     file_contents_example_entries = file_reader.read()
     json_contents = json.loads(file_contents_example_entries)
@@ -51,8 +51,12 @@ def decide(input_file, watchlist_file, countries_file):
         #If passport number if valid, check watchlist for countries with medical advisory
         does_country_have_medical_advisory = check_countries(travler['from']['via'])
 
+                # the check_countries function needs to be defines to raise the argument
+
         #If country not on medical advisory list, check if all required information has been provided
         is_information_complete = check_required_information(traveler)
+
+                # the check_required_information function needs to be defines to raise the argument
 
         # If all required information has been provided, check for valid birthday format
         if is_passport_valid==True:
@@ -61,8 +65,41 @@ def decide(input_file, watchlist_file, countries_file):
         #If birthday format is valid, check to see if traveler's home country is KAN
             #If home country is KAN and reason for entry is re-entry, accept
 
+        #MT addition part
+#The only options for entry reason are returning, visit, or transit
+
+        is_home_country = entry_reason(traveler["returning", "visit", "transit"])
+
+        returning_home =["returning"]
+        entry_reason = check_returning_home(traveler["returning"])
+                return ['Accept']
+            print("returning home to KAN")
+
+        elif:
+        entry_reason =check_entry_reason is(traveler("visit"))
+         return ['secondary']
+
+        """
+        entry_reason is "returning" == True:
+        for entry_reason in ('example_entries.json'):
+            return(entry_reason("returning"))
+        """
+
+
+
+
+        return ["secondary"]
+    #this could then move on to whether or not a visa is needed for the specified travel type
+
+        elif home_country != 'Kan"
+            return ['Reject']
+
+
         #If home country is not KAN, check to see reason for entry
+
             #If reason for entry is visit and the traveler's country requires a visa, visitor visa required
+            #entry_reason is
+
             #If reason for entry is transit and the traveler's country requires a visa, transit visa required
 
         #If visa is required, check that visa date format is valid and did not expire
@@ -92,6 +129,12 @@ def valid_passport_format(passport_number):
         return False
 
 
+if not "first_name" : "",
+    if not "last_name": "",
+first_name = [name]
+
+return['Reject']
+    key, name = line.split()
 
 
 
