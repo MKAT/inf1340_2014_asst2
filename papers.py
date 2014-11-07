@@ -78,21 +78,18 @@ def decide(input_file, watchlist_file, countries_file):
         elif:
         entry_reason =check_entry_reason is(traveler("visit"))
          return ['secondary']
+#after this step It then goes to be secondarily processed for other visa parameters
+        elif:
+        entry_reason =check_entry_reason is(traveler("transit"))
+         return ['secondary']
+
+#after this step It then goes to be secondarily processed for other visa parameters
 
         """
         entry_reason is "returning" == True:
         for entry_reason in ('example_entries.json'):
             return(entry_reason("returning"))
         """
-
-
-
-
-        return ["secondary"]
-    #this could then move on to whether or not a visa is needed for the specified travel type
-
-        elif home_country != 'Kan"
-            return ['Reject']
 
 
         #If home country is not KAN, check to see reason for entry
