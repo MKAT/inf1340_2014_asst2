@@ -30,6 +30,7 @@ with open("countries.json", "r") as file_reader:
     file_contents_countries = file_reader.read()
     json_contents = json.loads (file_contents_countries)
     print(file_contents_countries)
+# Does the above go within the below  def decide(input....) where the parameters are listed?
 
 
 def decide(input_file, watchlist_file, countries_file):
@@ -68,14 +69,13 @@ def decide(input_file, watchlist_file, countries_file):
 
         #MT addition part
 #The only options for entry reason are returning, visit, or transit
-
-        is_home_country = entry_reason(traveler["returning", "visit", "transit"])
+    for traveler in json_contents:
+        entry_reason = (traveler["returning", "visit", "transit"])
 
         returning_home =["returning"]
         entry_reason = check_returning_home(traveler["returning"])
-                return ['Accept']
-            print("returning home to KAN")
-
+            return ['Accept']
+    print("returning home to KAN")
 
 #If home country is not KAN, check to see reason for entry
 
@@ -109,7 +109,7 @@ for entry_reason in ('example_entries.json'):
 
     else:
         return ["Reject"]
-
+print("push to futher questioning and checks")
 
 def valid_passport_format(passport_number):
     """
@@ -126,13 +126,17 @@ def valid_passport_format(passport_number):
         return False
 
 
-if not "first_name" : "",
-    if not "last_name": "",
-first_name = [name]
-
-return['Reject']
-    key, name = line.split()
-
+#Checks if traveler's passport, and if first or last name is on watchlist
+def check_watchlist(on_watchlist):
+    #check the first_name of people on watchlist
+    #check the last_name of people on watchlist
+    #check the passport number of passport watchlist
+first_name = ""
+last_name = ""
+#confused about the passport part of the json file
+    if first_name is not "":
+    if last_name is not "":
+    return: [Reject]
 
 
 def valid_date_format(date_string):
