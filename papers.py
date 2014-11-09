@@ -153,8 +153,8 @@ def is_countries_cleared (countries_dict, from_country, via_country):
 
 
     # Check via country
+    # If via country is empty, no need to validate. 
 
-    
     return True  #temporary for testing
 
 def is_watchlist_cleared(watchlist_dict, passport_number, first_name, last_name):
