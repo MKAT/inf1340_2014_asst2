@@ -213,7 +213,6 @@ def required_information_complete(traveler):
         reading = False
         return
 
-
 def is_countries_cleared(countries_dict, from_country, via_country):
     """
     Checks if 'from' or 'via' country has medical advisory.
