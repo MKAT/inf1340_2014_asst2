@@ -69,6 +69,7 @@ def decide(input_file, watchlist_file, countries_file):
                     else:
                         # this traveler's home country is KAN. Entry_reason is returning.
                         output_results.append("Accept")
+    return output_results
 
 
 
