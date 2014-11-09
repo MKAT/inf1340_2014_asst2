@@ -152,6 +152,9 @@ def is_countries_cleared (countries_dict, from_country, via_country):
     # Check from country.
 
 
+    # Check via country
+
+    
     return True  #temporary for testing
 
 def is_watchlist_cleared(watchlist_dict, passport_number, first_name, last_name):
