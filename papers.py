@@ -162,7 +162,7 @@ for line in 'watchlist.json':
     if line != "-":
         wl = str(line[:-1])
         if wl > str(line[:0]):
-            # we want to print the line that is longer than a certain amount because it has content thus an alert len fuction
+            # we want to print the line that is longer than a certain amount because it has content thus an alert len function
             print(line)
 
 
@@ -189,9 +189,28 @@ def required_information_complete(traveler):
            All information is in one string
            First Name
            Last Name
+           Passport number
 
     :return: Boolean True if info is complete, False otherwise.
     """
+    import json
+
+    with open(traveler, "r") as file_reader:
+        file_contents_input_file = file_reader.read()
+        travelers_info = json.loads(file_contents_input_file)
+        travelers_dict = {travelers_info}
+        result = []
+        reading = True
+        while reading:
+            if required_information_complete:
+                result.append(travelers_info)
+                while reading:
+                    line = file_reader.readline()
+                    if line.__contains__("")
+
+                else:
+                    reading = False
+                    return
 
 
 def is_countries_cleared(countries_dict, from_country, via_country):
@@ -297,3 +316,9 @@ def valid_passport_format(passport_number):
 
 """
 
+"""
+Prof notes:
+passport_format = re.compile('^\w{5}-\w{5}-\w{5}-\w{5}-\w{5}$')
+The first line in valid_visa_format should be:
+passport_format = re.compile('^\w{5}-\w{5}$')
+"""
