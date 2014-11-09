@@ -49,13 +49,14 @@ def decide(input_file, watchlist_file, countries_file):
             """
         with open("countries.json", "r") as countries_file:
                 #do I make medical_advisory countries_file instead?
-        """        countries_file.readline()
+            """
+            countries_file.readline()
             data = countries_file.readline().rstrip()
             while data.startswith("medical_advisory"):
                 data = countries_file.readline().rstrip()
             print(data)
             for data in countries_file:
-                print(data.rstrip()) """
+            """
 
         """ if __name__ =='__main__':
              medical_advisory = open("countries.json"."r")
@@ -65,7 +66,7 @@ def decide(input_file, watchlist_file, countries_file):
             #read from_country_code
             #  from_data = traveler['from']  # assume From data is provided.
             from_country = {traveler['from']}  # put from_country data into a dictionary.
-            from_country_code = from_country {traveler ['country']}
+            from_country_code = {traveler['country']}
 
         #4-b. Get 'via' country code, if exists.
         if "via" in traveler:
@@ -157,14 +158,16 @@ def import_watchlist_json(watchlist_file):
         return watchlist_dict
 
 
-for line in 'watchlist.json':
-    line = line.strip()
-    if line != "-":
-        wl = str(line[:-1])
-        if wl > str(line[:0]):
+def watchlist_file(import_watchlist_json, watchlist_dict):
+
+    for line in import_watchlist_json(watchlist_file):
+        line = line.strip()
+        if line != "-":
+            import_watchlist_json.len = str(line[:-1])
+        if watchlist_file.len > str(line[:0]):
             # we want to print the line that is longer than a certain amount because it has content thus an alert len function
             print(line)
-
+        #Thus this would return a line that would have the name or passport number of the person on the watchlist
 
 def import_countries_json(countries_file):
     """
@@ -222,12 +225,25 @@ def is_countries_cleared(countries_dict, from_country, via_country):
     :return: Boolean True if medical advisory is cleared, False otherwise.
     """
     # Check from country.
+    data = countries_dict.readline().rstrip()
+    while data.startswith("medical_advisory"):
+        data = countries_dict.readline().rstrip()
+    print(data)
 
+    for data in countries_dict:
+        print(data.rstrip())
 
+    with open(countries_dict, "r") as file_reader:
+            from_country = file_reader.read()
+            via_country = file_reader.read()
+            if from_country in countries_dict:
+                countries_dict [from_country] = countries_dict [from_country] > 1
     # Check via country
-    # If via country is empty, no need to validate. 
-
-    return True  # temporary for testing
+            if via_country in countries_dict:
+                countries_dict [via_country] = countries_dict [via_country] > 1
+      # If via country is empty, no need to validate.
+                if not via_country:
+                    return True  # temporary for testing
 
 
 def is_watchlist_cleared(watchlist_dict, passport_number, first_name, last_name):
