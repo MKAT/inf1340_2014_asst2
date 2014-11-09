@@ -206,12 +206,22 @@ def required_information_complete(traveler):
                 result.append(travelers_info)
                 while reading:
                     line = file_reader.readline()
-                    if line.__contains__("")
+                    if "passport":
+                        result.__contains__("passport")
+                        if len("passport") > 8:
+                            return True
+                    if "last_name":
+                        result.__contains__("last_name")
+                        if len("last_name") > 9:
+                            return True
+                    if "first_name":
+                        result.__contains__("first_name")
+                        if len("first_name") > 10:
+                            return True
 
                 else:
                     reading = False
-                    return
-
+                    return result
 
 def is_countries_cleared(countries_dict, from_country, via_country):
     """
