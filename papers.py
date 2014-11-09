@@ -194,22 +194,25 @@ def required_information_complete(traveler):
     :return: Boolean True if info is complete, False otherwise.
     """
     import json
+    #need a str statement to ensure info is str
 
     with open(traveler, "r") as file_reader:
         file_contents_input_file = file_reader.read()
         travelers_info = json.loads(file_contents_input_file)
         travelers_dict = {travelers_info}
-        for line in travelers_info:
-            last_name = line.strip()
-            first_name = line.strip()
-            passport = line.strip()
-            found = True
-            if last_name in travelers_info:
-                travelers_info[last_name] = travelers_info[last_name] > 1
-            else:
-                reading = False
-            return
- #need a str statement o ensure info is str
+    for line in travelers_info:
+        if travelers_info: str("")
+        return False
+    last_name = line.strip()
+    first_name = line.strip()
+    passport = line.strip()
+    found = True
+    if last_name in travelers_info:
+       travelers_info[last_name] = travelers_info[last_name] > 1
+    else:
+        reading = False
+        return
+
 
 def is_countries_cleared(countries_dict, from_country, via_country):
     """
