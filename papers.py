@@ -127,19 +127,6 @@ def required_information_complete(traveler):
     :return: Boolean True if info is complete, False otherwise.
     """
 
-def valid_passport_format(passport_number):
-    """
-    Checks whether a passport number is five sets of five alpha-number characters separated by dashes
-    :param passport_number: alpha-numeric string
-
-    :return: Boolean; True if the format is valid, False otherwise
-    """
-    passport_format = re.compile('.{5}-.{5}-.{5}-.{5}-.{5}')
-
-    if passport_format.match(passport_number):
-        return True
-    else:
-        return False
 
 def is_countries_cleared (countries_list, from_country, via_country):
     """
@@ -201,7 +188,27 @@ def is_visa_valid(countries_list, home_country, entry_reason, visa_date):
 
 
 
+
 """
+def valid_passport_format(passport_number):
+    """
+    Checks whether a passport number is five sets of five alpha-number characters separated by dashes
+    :param passport_number: alpha-numeric string
+
+    :return: Boolean; True if the format is valid, False otherwise
+    """
+    passport_format = re.compile('.{5}-.{5}-.{5}-.{5}-.{5}')
+
+    if passport_format.match(passport_number):
+        return True
+    else:
+        return False
+"""
+
+
+
+"""
+
         #MT addition part
 #The only options for entry reason are returning, visit, or transit
 
