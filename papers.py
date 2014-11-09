@@ -199,29 +199,17 @@ def required_information_complete(traveler):
         file_contents_input_file = file_reader.read()
         travelers_info = json.loads(file_contents_input_file)
         travelers_dict = {travelers_info}
-        result = []
-        reading = True
-        while reading:
-            if required_information_complete:
-                result.append(travelers_info)
-                while reading:
-                    line = file_reader.readline()
-                    if "passport":
-                        result.__contains__("passport")
-                        if len("passport") > 8:
-                            return True
-                    if "last_name":
-                        result.__contains__("last_name")
-                        if len("last_name") > 9:
-                            return True
-                    if "first_name":
-                        result.__contains__("first_name")
-                        if len("first_name") > 10:
-                            return True
-
-                else:
-                    reading = False
-                    return result
+        for line in travelers_info:
+            last_name = line.strip()
+            first_name = line.strip()
+            passport = line.strip()
+            found = True
+            if last_name in travelers_info:
+                travelers_info[last_name] = travelers_info[last_name] > 1
+            else:
+                reading = False
+            return
+ #need a str statement o ensure info is str
 
 def is_countries_cleared(countries_dict, from_country, via_country):
     """
@@ -332,3 +320,35 @@ passport_format = re.compile('^\w{5}-\w{5}-\w{5}-\w{5}-\w{5}$')
 The first line in valid_visa_format should be:
 passport_format = re.compile('^\w{5}-\w{5}$')
 """
+
+"""
+#Attempted traveler function
+   with open(traveler, "r") as file_reader:
+        file_contents_input_file = file_reader.read()
+        travelers_info = json.loads(file_contents_input_file)
+        travelers_dict = {travelers_info}
+       #need a str statement o ensure info is str
+        result = []
+        travelers_info = [name]
+        while reading:
+            if required_information_complete:
+                result.append(travelers_info)
+                while reading:
+                    line = file_reader.readline()
+                    if "passport":
+                        result.__contains__("passport")
+                        if len("passport") > 8:
+                            return True
+                    if "last_name":
+                        result.__contains__("last_name")
+                        if len("last_name") > 9:
+                            return True
+                    if "first_name":
+                        result.__contains__("first_name")
+                        if len("first_name") > 10:
+                            return True
+
+                else:
+                    reading = False
+                    return result
+                    """
