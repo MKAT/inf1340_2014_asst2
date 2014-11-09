@@ -22,7 +22,7 @@ def decide(input_file, watchlist_file, countries_file):
     :return: List of strings. Possible values of strings are: "Accept", "Reject", "Secondary", and "Quarantine"
     """
     # 1. Import JSON file contents into string Dictionary.
-    #attemt at making this a dictionary opposed to list
+    # attemt at making this a dictionary opposed to list
     # or from referencing pg 174 and 180 in text
     #with open('example_entries.json', 'r') as input_file:  which could be done above each
 
@@ -45,42 +45,28 @@ def decide(input_file, watchlist_file, countries_file):
         else:  # continue next validation.
 
             #4. Check if 'from' or 'via' country has medical advisory. If yes, send to quarantine.
-            with open("countries.json", "r") as countries_file:
+           """
+            """
+        with open("countries.json", "r") as countries_file:
                 #do I make medical_advisory countries_file instead?
-                countries_file.readline()
+        """        countries_file.readline()
             data = countries_file.readline().rstrip()
             while data.startswith("medical_advisory"):
                 data = countries_file.readline().rstrip()
             print(data)
             for data in countries_file:
-                print(data.rstrip())
-
-        def medical_advisory(reader):
-            """
-            :param reader: file open for reading)-> list
-            Read zero or more quaratine countries from reader, return a list
-            """
-            result = []
-            line = reader.readline()
-            key, name = line.split()
-            country = [name]
-            reading = True
-            while reading:
-                if medical_advisory:
-                    result.append(medical_advisory)
-                else:
-                    reading = False
-                    return
+                print(data.rstrip()) """
 
         """ if __name__ =='__main__':
              medical_advisory = open("countries.json"."r")
         """
         #4-a. Get 'from' country code.
         def medical_advisory_country(reader):
-        #read from_country_code
-        #  from_data = traveler['from']  # assume From data is provided.
+            #read from_country_code
+            #  from_data = traveler['from']  # assume From data is provided.
             from_country = {traveler['from']}  # put from_country data into a dictionary.
-            from_country_code = from_country ['country']
+            from_country_code = from_country {traveler ['country']}
+
         #4-b. Get 'via' country code, if exists.
         if "via" in traveler:
             #  via_data =  traveler['via']
@@ -91,8 +77,26 @@ def decide(input_file, watchlist_file, countries_file):
 
         if not is_countries_cleared(countries_dict, from_country_code, via_country_code):
             # This traveler should be sent to Quarantine as the 'from' country or 'via' country has
+            def medical_advisory(reader): #do I change to counties cleared?
+                """
+                :param reader: file open for reading)-> list
+            Read zero or more quarantine countries from reader, return a list
+                """
+            result = []
+            key, name = line.split()
+            from_country_code = [name]
+            via_country_code = [name]
+            reading = True
+            while reading:
+                if medical_advisory:
+                    result.append(medical_advisory)
+                else:
+                    reading = False
+                    return
+
             #    medical advisory.
             output_results.append("Quarantine")
+
         else:  # continue next validation.
             # is_passport_valid = valid_passport_format(traveler['passport']) ---> NOT NECESSARY
             #5. Check if traveler is on watchlist. If yes, send to Secondary review.
@@ -118,7 +122,6 @@ def decide(input_file, watchlist_file, countries_file):
                     # this traveler's home country is KAN. Entry_reason is returning.
                     output_results.append("Accept")
 
-
     return output_results
 
 
@@ -134,7 +137,7 @@ def import_travelers_json(input_file):
         file_contents_input_file = file_reader.read()
         travelers_info = json.loads(file_contents_input_file)
         travelers_dict = {travelers_info}
-        #print(travelers_dict)
+        # print(travelers_dict)
         return travelers_dict
 
 
@@ -152,12 +155,14 @@ def import_watchlist_json(watchlist_file):
         watchlist_dict = {watchlist_info}
         # print(watchlist_dict)
         return watchlist_dict
+
+
 for line in 'watchlist.json':
-     line = line.strip()
-     if line != "-":
+    line = line.strip()
+    if line != "-":
         wl = str(line[:-1])
         if wl > str(line[:0]):
-            #we want to print the line that is longer than a certain amount because it has content thus an alert len fuction
+            # we want to print the line that is longer than a certain amount because it has content thus an alert len fuction
             print(line)
 
 
@@ -215,7 +220,7 @@ def is_watchlist_cleared(watchlist_dict, passport_number, first_name, last_name)
     :return: Boolean True if traveler is not on the watchlist, False otherwise.
     """
     # check the passport number of passport watchlist
-    #check the first_name of people on watchlist
+    # check the first_name of people on watchlist
     #check the last_name of people on watchlist
     if passport_number != "":
         # passport number is available so check with passport number.
