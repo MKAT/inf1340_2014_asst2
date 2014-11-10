@@ -49,7 +49,7 @@ def decide(input_file, watchlist_file, countries_file):
             def from_country_code (reader):
                 from_country_code = [traveler['country']]
 
-            def medical_advisory_country(reader):
+        def medical_advisory_country(reader):
             # read from_country_code
             #  from_data = traveler['from']  # assume From data is provided.
             from_country = {traveler['from']}  # put from_country data into a list.
