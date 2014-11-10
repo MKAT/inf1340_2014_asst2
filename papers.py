@@ -50,7 +50,7 @@ def decide(input_file, watchlist_file, countries_file):
                 from_country_code = [traveler['country']]
 
             def medical_advisory_country(reader):
-            #read from_country_code
+            # read from_country_code
             #  from_data = traveler['from']  # assume From data is provided.
             from_country = [traveler['from']]  # put from_country data into a list.
             from_country_code = [traveler['country']]
@@ -71,9 +71,10 @@ def decide(input_file, watchlist_file, countries_file):
             Read zero or more quarantine countries from reader, return a list
                 """
             result = []
-            key, name = line.split()
-            from_country_code = [name]
-            via_country_code = [name]
+            key, country = list[
+                        from_country_code:[""],
+                        via_country_code : [""],
+            ]
             reading = True
             while reading:
                 if medical_advisory:
