@@ -101,7 +101,7 @@ def decide(input_file, watchlist_file, countries_file):
                     visa = {traveler['visa']}
                     visa_date = visa['date']
                     # all dates are in YYYY-MM-DD format.
-                    passport_format = re.compile('^.{5}-.{5}-.{5}-.{5}-.{5}$')
+
                     #6-a. Check if traveler's home country require any visa.
                     if not is_visa_valid(countries_list, home_country['country'], entry_reason, visa_date):
                         # visa is invalid.  Reject the traveler.
@@ -280,20 +280,22 @@ def is_visa_valid(countries_list, home_country, entry_reason, visa_date):
         return True
 
 
-"""
 def valid_passport_format(passport_number):
     #Checks whether a passport number is five sets of five alpha-number characters separated by dashes
+    """
     :param passport_number: alpha-numeric string
 
     :return: Boolean; True if the format is valid, False otherwise
-
-    passport_format = re.compile('.{5}-.{5}-.{5}-.{5}-.{5}')
+    """
+    passport_format = re.compile('^.{5}-.{5}-.{5}-.{5}-.{5}$')
 
     if passport_format.match(passport_number):
         return True
     else:
         return False
-"""
+
+
+
 
 """
 
