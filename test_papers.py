@@ -12,7 +12,7 @@ __status__ = "Prototype"
 
 # imports one per line
 import pytest
-from papers import decide
+from papers import decide 
 
 def test_basic():
     assert decide("test_returning_citizen.json", "watchlist.json", "countries.json") == ["Accept", "Accept"]
