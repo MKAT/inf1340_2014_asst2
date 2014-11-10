@@ -71,10 +71,9 @@ def decide(input_file, watchlist_file, countries_file):
             Read zero or more quarantine countries from reader, return a list
                 """
             result = []
-            key, country = list[
-                        from_country_code:[""],
-                        via_country_code : [""],
-            ]
+            key, name = line.split()
+            from_country_code = [name]
+            via_country_code = [name]
             reading = True
             while reading:
                 if medical_advisory:
@@ -368,6 +367,6 @@ passport_format = re.compile('^\w{5}-\w{5}$')
             for data in countries_file:
             """
 
-        """ if __name__ =='__main__':
-             medical_advisory = open("countries.json"."r")
-        """
+""" if __name__ =='__main__':
+    medical_advisory = open("countries.json"."r")
+    """
