@@ -45,20 +45,7 @@ def decide(input_file, watchlist_file, countries_file):
            """
             """
         with open("countries.json", "r") as countries_file:
-                #do I make medical_advisory countries_file instead?
-            """
-            countries_file.readline()
-            data = countries_file.readline().rstrip()
-            while data.startswith("medical_advisory"):
-                data = countries_file.readline().rstrip()
-            print(data)
-            for data in countries_file:
-            """
-
-        """ if __name__ =='__main__':
-             medical_advisory = open("countries.json"."r")
-        """
-        #4-a. Get 'from' country code.
+          #4-a. Get 'from' country code.
         def medical_advisory_country(reader):
             #read from_country_code
             #  from_data = traveler['from']  # assume From data is provided.
@@ -367,3 +354,16 @@ passport_format = re.compile('^\w{5}-\w{5}$')
                     reading = False
                     return result
                     """
+
+"""
+            countries_file.readline()
+            data = countries_file.readline().rstrip()
+            while data.startswith("medical_advisory"):
+                data = countries_file.readline().rstrip()
+            print(data)
+            for data in countries_file:
+            """
+
+        """ if __name__ =='__main__':
+             medical_advisory = open("countries.json"."r")
+        """
