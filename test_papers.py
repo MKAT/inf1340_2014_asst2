@@ -12,14 +12,12 @@ __status__ = "Prototype"
 
 # imports one per line
 import pytest
-from papers import decidepaper
-
+from papers import decide
 
 def test_basic():
     assert decide("test_returning_citizen.json", "watchlist.json", "countries.json") == ["Accept", "Accept"]
     assert decide("test_watchlist.json", "watchlist.json", "countries.json") == ["Secondary"]
     assert decide("test_quarantine.json", "watchlist.json", "countries.json") == ["Quarantine"]
-
 
 def test_files():
     with pytest.raises(FileNotFoundError):
