@@ -21,22 +21,19 @@ def decide(input_file, watchlist_file, countries_file):
         an entry or transit visa is required, and whether there is currently a medical advisory
     :return: List of strings. Possible values of strings are: "Accept", "Reject", "Secondary", and "Quarantine"
     """
-    # 1. Import JSON file contents into string Dictionary.
-    # attemt at making this a dictionary opposed to list
-    # or from referencing pg 174 and 180 in text
-    #with open('example_entries.json', 'r') as input_file:  which could be done above each
+    # 1. Import JSON file contents into string list.
 
     # #1-a. Import travelers' info.
-    travelers_dict = import_travelers_json(input_file)
+    travelers_list = import_travelers_json(input_file)
     #1-b. Import watchlist file.
-    watchlist_dict = import_watchlist_json(watchlist_file)
+    watchlist_list = import_watchlist_json(watchlist_file)
     #1-c. Import countries file.
-    countries_dict = import_countries_json(countries_file)
+    countries_list = import_countries_json(countries_file)
 
     #2. Now we have each file stored in Lists.  Loop through each traveler in the travelers list
     #   and validate application information, then store the result to output list.
     output_results = []
-    for traveler in travelers_dict:
+    for traveler in travelers_list:
 
         #3. Check if any required information is missing on this traveler.
         if not required_information_complete(traveler):
@@ -65,7 +62,7 @@ def decide(input_file, watchlist_file, countries_file):
         def medical_advisory_country(reader):
             #read from_country_code
             #  from_data = traveler['from']  # assume From data is provided.
-            from_country = {traveler['from']}  # put from_country data into a dictionary.
+            from_country = {traveler['from']}  # put from_country data into a list.
             from_country_code = {traveler['country']}
 
         #4-b. Get 'via' country code, if exists.
@@ -76,7 +73,7 @@ def decide(input_file, watchlist_file, countries_file):
         else:
             via_country_code = ""
 
-        if not is_countries_cleared(countries_dict, from_country_code, via_country_code):
+        if not is_countries_cleared(countries_list, from_country_code, via_country_code):
             # This traveler should be sent to Quarantine as the 'from' country or 'via' country has
             def medical_advisory(reader): #do I change to counties cleared?
                 """
@@ -101,7 +98,7 @@ def decide(input_file, watchlist_file, countries_file):
         else:  # continue next validation.
             # is_passport_valid = valid_passport_format(traveler['passport']) ---> NOT NECESSARY
             #5. Check if traveler is on watchlist. If yes, send to Secondary review.
-            if not is_watchlist_cleared(watchlist_dict, traveler['passport'], traveler['first_name'],
+            if not is_watchlist_cleared(watchlist_list, traveler['passport'], traveler['first_name'],
                                         traveler['last_name']):
                 # This traveler's passport# or name is on watchlist. Send to Secondary review.
                 output_results.append("Secondary")
@@ -114,7 +111,7 @@ def decide(input_file, watchlist_file, countries_file):
                     visa = {traveler['visa']}
                     visa_date = visa['date']  # all dates are in YYYY-MM-DD format.
                     #6-a. Check if traveler's home country require any visa.
-                    if not is_visa_valid(countries_dict, home_country['country'], entry_reason, visa_date):
+                    if not is_visa_valid(countries_list, home_country['country'], entry_reason, visa_date):
                         # visa is invalid.  Reject the traveler.
                         output_results.append("Reject")
                     else:
@@ -130,35 +127,35 @@ def import_travelers_json(input_file):
     """
     imports travelers' data from JSON file.
     :param input_file:
-    :return: Dictionary with travelers data.
+    :return: List with travelers data.
     """
     import json
     # The below calls the json file to be read
     with open(input_file, "r") as file_reader:
         file_contents_input_file = file_reader.read()
         travelers_info = json.loads(file_contents_input_file)
-        travelers_dict = {travelers_info}
-        # print(travelers_dict)
-        return travelers_dict
+        travelers_list = [travelers_info]
+        # print(travelers_list)
+        return travelers_list
 
 
 def import_watchlist_json(watchlist_file):
     """
     Imports watchlist data from JSON file.
     :param watchlist_file:
-    :return: Dictionary with watchlist info.
+    :return: List with watchlist info.
     """
     import json
 
     with open(watchlist_file, "r") as file_reader:
         file_contents_watchlist = file_reader.read()
         watchlist_info = json.loads(file_contents_watchlist)
-        watchlist_dict = {watchlist_info}
-        # print(watchlist_dict)
-        return watchlist_dict
+        watchlist_list = [watchlist_info]
+        # print(watchlist_list)
+        return watchlist_list
 
 
-def watchlist_file(import_watchlist_json, watchlist_dict):
+def watchlist_file(import_watchlist_json, watchlist_list):
 
     for line in import_watchlist_json(watchlist_file):
         line = line.strip()
@@ -173,16 +170,16 @@ def import_countries_json(countries_file):
     """
     Imports countries data from json file to use it for validation.
     :param countries_file:
-    :return: Dictionary with countries data.
+    :return: List with countries data.
     """
     import json
 
     with open(countries_file, "r") as file_reader:
         file_contents_countries = file_reader.read()
         countries_info = json.loads(file_contents_countries)
-        countries_dict = {countries_info}
-        # print(countries_dict)
-        return countries_dict
+        countries_list = [countries_info]
+        # print(countries_list)
+        return countries_list
 
 
 def required_information_complete(traveler):
@@ -202,7 +199,7 @@ def required_information_complete(traveler):
     with open(traveler, "r") as file_reader:
         file_contents_input_file = file_reader.read()
         travelers_info = json.loads(file_contents_input_file)
-        travelers_dict = {travelers_info}
+        travelers_list = [travelers_info]
     for line in travelers_info:
         if travelers_info: str("")
         return False
@@ -216,37 +213,37 @@ def required_information_complete(traveler):
         reading = False
         return
 
-def is_countries_cleared(countries_dict, from_country, via_country):
+def is_countries_cleared(countries_list, from_country, via_country):
     """
     Checks if 'from' or 'via' country has medical advisory.
-    :param countries_dict: list of countries.
+    :param countries_list: list of countries.
     :param from_country:
     :param via_country:
     :return: Boolean True if medical advisory is cleared, False otherwise.
     """
     # Check from country.
-    data = countries_dict.readline().rstrip()
+    data = countries_list.readline().rstrip()
     while data.startswith("medical_advisory"):
-        data = countries_dict.readline().rstrip()
+        data = countries_list.readline().rstrip()
     print(data)
 
-    for data in countries_dict:
+    for data in countries_list:
         print(data.rstrip())
 
-    with open(countries_dict, "r") as file_reader:
+    with open(countries_list, "r") as file_reader:
             from_country = file_reader.read()
             via_country = file_reader.read()
-            if from_country in countries_dict:
-                countries_dict [from_country] = countries_dict [from_country] > 1
+            if from_country in countries_list:
+                countries_list [from_country] = countries_list [from_country] > 1
     # Check via country
-            if via_country in countries_dict:
-                countries_dict [via_country] = countries_dict [via_country] > 1
+            if via_country in countries_list:
+                countries_list [via_country] = countries_list [via_country] > 1
       # If via country is empty, no need to validate.
                 if not via_country:
                     return True  # temporary for testing
 
 
-def is_watchlist_cleared(watchlist_dict, passport_number, first_name, last_name):
+def is_watchlist_cleared(watchlist_list, passport_number, first_name, last_name):
     """
     #Checks if traveler's passport, and if first or last name is on watchlist
     :param passport_number: passport number of the traveler.
@@ -269,11 +266,11 @@ def is_watchlist_cleared(watchlist_dict, passport_number, first_name, last_name)
         return False
 
 
-def is_visa_valid(countries_dict, home_country, entry_reason, visa_date):
+def is_visa_valid(countries_list, home_country, entry_reason, visa_date):
     """
     Check if visa is valid if traveler's country and entry_reason require a visa.
     Note: This function is called only when home_country != KAN.
-    :param countries_dict:
+    :param countries_list:
     :param home_country:
     :param entry_reason:
     :param visa_date: traveler's visa date
@@ -344,7 +341,7 @@ passport_format = re.compile('^\w{5}-\w{5}$')
    with open(traveler, "r") as file_reader:
         file_contents_input_file = file_reader.read()
         travelers_info = json.loads(file_contents_input_file)
-        travelers_dict = {travelers_info}
+        travelers_list = {travelers_info}
        #need a str statement o ensure info is str
         result = []
         travelers_info = [name]

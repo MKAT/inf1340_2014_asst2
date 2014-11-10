@@ -12,7 +12,7 @@ __status__ = "Prototype"
 
 # imports one per line
 import pytest
-from papers import decide
+from papers import decidepaper
 
 
 def test_basic():
