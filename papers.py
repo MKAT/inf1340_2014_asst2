@@ -48,9 +48,9 @@ def decide(input_file, watchlist_file, countries_file):
             #4-a. Get 'from' country code.
             def from_country_code (reader):
                 from_country_code = [traveler['country']]
-            
+
             def medical_advisory_country(reader):
-                #read from_country_code
+            #read from_country_code
             #  from_data = traveler['from']  # assume From data is provided.
             from_country = [traveler['from']]  # put from_country data into a list.
             from_country_code = [traveler['country']]
@@ -62,7 +62,6 @@ def decide(input_file, watchlist_file, countries_file):
             via_country_code = via_country['country']
         else:
             via_country_code = ""
-
 
         if not is_countries_cleared(countries_list, from_country_code, via_country_code):
             # This traveler should be sent to Quarantine as the 'from' country or 'via' country has
