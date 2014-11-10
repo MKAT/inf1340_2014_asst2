@@ -99,7 +99,9 @@ def decide(input_file, watchlist_file, countries_file):
                     # home country is not KAN. Get entry_reason and check if any visa is required.
                     entry_reason = traveler['entry_reason']
                     visa = {traveler['visa']}
-                    visa_date = visa['date']  # all dates are in YYYY-MM-DD format.
+                    visa_date = visa['date']
+                    # all dates are in YYYY-MM-DD format.
+                    passport_format = re.compile('^.{5}-.{5}-.{5}-.{5}-.{5}$')
                     #6-a. Check if traveler's home country require any visa.
                     if not is_visa_valid(countries_list, home_country['country'], entry_reason, visa_date):
                         # visa is invalid.  Reject the traveler.
