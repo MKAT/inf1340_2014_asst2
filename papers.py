@@ -10,6 +10,7 @@ __license__ = "MIT License"
 
 __status__ = "Prototype"
 
+import json
 
 def decide(input_file, watchlist_file, countries_file):
     """
@@ -121,7 +122,7 @@ def import_travelers_json(input_file):
     :param input_file:
     :return: List with travelers data.
     """
-    import json
+
     # The below calls the json file to be read
     with open(input_file, "r") as file_reader:
         file_contents_input_file = file_reader.read()
@@ -137,7 +138,7 @@ def import_watchlist_json(watchlist_file):
     :param watchlist_file:
     :return: List with watchlist info.
     """
-    import json
+
 
     with open(watchlist_file, "r") as file_reader:
         file_contents_watchlist = file_reader.read()
@@ -164,7 +165,6 @@ def import_countries_json(countries_file):
     :param countries_file:
     :return: List with countries data.
     """
-    import json
 
     with open(countries_file, "r") as file_reader:
         file_contents_countries = file_reader.read()
@@ -185,7 +185,6 @@ def required_information_complete(traveler):
 
     :return: Boolean True if info is complete, False otherwise.
     """
-    import json
     #need a str statement to ensure info is str
 
     with open(traveler, "r") as file_reader:
@@ -194,16 +193,17 @@ def required_information_complete(traveler):
         travelers_list = [travelers_info]
     for line in travelers_info:
         if travelers_info: str("")
-        return False
-    last_name = line.strip()
-    first_name = line.strip()
-    passport = line.strip()
+
+    last_name = ()
+    first_name = ()
+    passport = ()
+
     found = True
     if last_name in travelers_info:
        travelers_info[last_name] = travelers_info[last_name] > 1
     else:
         reading = False
-        return
+        return False
 
 def is_countries_cleared(countries_list, from_country, via_country):
     """
@@ -371,6 +371,4 @@ passport_format = re.compile('^\w{5}-\w{5}$')
             for data in countries_file:
             """
 
-""" if __name__ =='__main__':
-    medical_advisory = open("countries.json"."r")
-    """
+decide("test_quarantine.json", "watchlist.json", "countries.json") == ["Quarantine"]
