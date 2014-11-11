@@ -128,7 +128,6 @@ def import_watchlist_json(watchlist_file):
     with open(watchlist_file, "r") as file_reader:
         file_contents_watchlist = file_reader.read()
         watchlist_info = json.loads(file_contents_watchlist)
-        # print(watchlist_list)
         return watchlist_info
 
 
@@ -154,7 +153,6 @@ def import_countries_json(countries_file):
         file_contents_countries = file_reader.read()
         countries_info = json.loads(file_contents_countries)
         #countries_list = [countries_info]
-        # print(countries_list)
         #return countries_list
         return countries_info
 
@@ -234,27 +232,7 @@ def is_countries_cleared(countries_list, from_country, via_country):
     :return: Boolean True if medical advisory is cleared, False otherwise.
     """
     # Check from country.
-    """
-    data = countries_list.readline().rstrip()
-    while data.startswith("medical_advisory"):
-        data = countries_list.readline().rstrip()
-    print(data)
 
-    for data in countries_list:
-        print(data.rstrip())
-
-    with open(countries_list, "r") as file_reader:
-        from_country = file_reader.read()
-        via_country = file_reader.read()
-        if from_country in countries_list:
-            countries_list[from_country] = countries_list[from_country] > 1
-            # Check via country
-        if via_country in countries_list:
-            countries_list[via_country] = countries_list[via_country] > 1
-            # If via country is empty, no need to validate.
-            if not via_country:
-                return True  # temporary for testing
-    """
     if countries_list[from_country]["medical_advisory"] != "":
         return False
 
@@ -334,78 +312,3 @@ def valid_passport_format(passport_number):
         return False
 
 
-"""
-
-        #MT addition part
-#The only options for entry reason are returning, visit, or transit
-
-        entry_reason = (traveler["returning", "visit", "transit"])
-
-        returning_home =["returning"]
-        entry_reason = check_returning_home(traveler["returning"])
-            return ['Accept']
-    print("returning home to KAN")
-
-#If home country is not KAN, check to see reason for entry
-
-        elif:
-        entry_reason =check_entry_reason is(traveler("visit"))
-         return ['secondary']
-#after this step It then goes to be secondarily processed for other visa parameters
-        elif:
-        entry_reason =check_entry_reason is(traveler("transit"))
-         return ['secondary']
-
-#after this step It then goes to be secondarily processed for other visa parameters
-
-"""
-
-"""
-Prof notes:
-passport_format = re.compile('^\w{5}-\w{5}-\w{5}-\w{5}-\w{5}$')
-The first line in valid_visa_format should be:
-passport_format = re.compile('^\w{5}-\w{5}$')
-"""
-
-"""
-#Attempted traveler function
-   with open(traveler, "r") as file_reader:
-        file_contents_input_file = file_reader.read()
-        travelers_info = json.loads(file_contents_input_file)
-        travelers_list = {travelers_info}
-       #need a str statement o ensure info is str
-        result = []
-        travelers_info = [name]
-        while reading:
-            if required_information_complete:
-                result.append(travelers_info)
-                while reading:
-                    line = file_reader.readline()
-                    if "passport":
-                        result.__contains__("passport")
-                        if len("passport") > 8:
-                            return True
-                    if "last_name":
-                        result.__contains__("last_name")
-                        if len("last_name") > 9:
-                            return True
-                    if "first_name":
-                        result.__contains__("first_name")
-                        if len("first_name") > 10:
-                            return True
-
-                else:
-                    reading = False
-                    return result
-                    """
-
-"""
-            countries_file.readline()
-            data = countries_file.readline().rstrip()
-            while data.startswith("medical_advisory"):
-                data = countries_file.readline().rstrip()
-            print(data)
-            for data in countries_file:
-            """
-
-decide("test_quarantine.json", "watchlist.json", "countries.json") == ["Quarantine"]
