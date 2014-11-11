@@ -66,8 +66,6 @@ def decide(input_file, watchlist_file, countries_file):
         else:
             via_country = ""
 
-
-        #if not is_countries_cleared(countries_list, from_country_code, via_country_code):
         if not is_countries_cleared(countries_list, traveler["from"]["country"], via_country):
             # This traveler should be sent to Quarantine as the 'from' country or 'via' country has
             print(traveler["from"]["country"], via_country)
@@ -86,16 +84,17 @@ def decide(input_file, watchlist_file, countries_file):
                 if home_country['country'] != "KAN":
                     # home country is not KAN. Get entry_reason and check if any visa is required.
                     entry_reason = traveler['entry_reason']
-                    visa = {traveler['visa']}
-                    visa_date = visa['date']
-                    # all dates are in YYYY-MM-DD format.
+                    if 'visa' in traveler.keys():
+                        visa = traveler['visa']
+                        visa_date = visa['date']
+                        # all dates are in YYYY-MM-DD format.
 
-                    #6-a. Check if traveler's home country require any visa.
-                    if not is_visa_valid(countries_list, home_country['country'], entry_reason, visa_date):
-                        # visa is invalid.  Reject the traveler.
-                        output_results.append("Reject")
-                    else:
-                        output_results.append("Accept")
+                        #6-a. Check if traveler's home country require any visa.
+                        if not is_visa_valid(countries_list, home_country['country'], entry_reason, visa_date):
+                            # visa is invalid.  Reject the traveler.
+                            output_results.append("Reject")
+                        else:
+                            output_results.append("Accept")
                 else:
                     # this traveler's home country is KAN. Entry_reason is returning.
                     output_results.append("Accept")
@@ -129,9 +128,8 @@ def import_watchlist_json(watchlist_file):
     with open(watchlist_file, "r") as file_reader:
         file_contents_watchlist = file_reader.read()
         watchlist_info = json.loads(file_contents_watchlist)
-        watchlist_list = [watchlist_info]
         # print(watchlist_list)
-        return watchlist_list
+        return watchlist_info
 
 
 def watchlist_file(import_watchlist_json, watchlist_list):
@@ -257,14 +255,18 @@ def is_countries_cleared(countries_list, from_country, via_country):
             if not via_country:
                 return True  # temporary for testing
     """
-
-    if countries_list[from_country]["medical_advisory"]:
+    if countries_list[from_country]["medical_advisory"] != "":
         return False
+
     elif via_country != "":
-        if countries_list[via_country]["medical_advisory"]:
-            return  False
+        if countries_list[via_country]["medical_advisory"] != "":
+            return False
+        else:
+            return True
+
     else:
         return True
+
 def is_watchlist_cleared(watchlist_list, passport_number, first_name, last_name):
     """
     #Checks if traveler's passport, and if first or last name is on watchlist
@@ -276,6 +278,7 @@ def is_watchlist_cleared(watchlist_list, passport_number, first_name, last_name)
     # check the passport number of passport watchlist
     # check the first_name of people on watchlist
     # check the last_name of people on watchlist
+    """
     if passport_number != "":
         # passport number is available so check with passport number.
 
@@ -286,7 +289,13 @@ def is_watchlist_cleared(watchlist_list, passport_number, first_name, last_name)
     else:
         # Passport number nor names are given so we cannot validate. Return False.
         return False
+    """
 
+    for entry_in_watchlist in watchlist_list:
+        if passport_number == entry_in_watchlist["passport"] or \
+                (first_name == entry_in_watchlist["first_name"] and last_name == entry_in_watchlist["last_name"]):
+            return False
+    return True
 
 def is_visa_valid(countries_list, home_country, entry_reason, visa_date):
     """
