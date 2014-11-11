@@ -12,6 +12,7 @@ __status__ = "Prototype"
 
 import json
 
+
 def decide(example_entries_file, watchlist_file, countries_file):
     """
     Decides whether a traveller's entry into Kanadia should be accepted
@@ -26,12 +27,12 @@ def decide(example_entries_file, watchlist_file, countries_file):
 
     # #1-a. Import travelers' info.
     travelers_list = import_travelers_json(example_entries_file)
-    #1-b. Import watchlist file.
+    # 1-b. Import watchlist file.
     watchlist_list = import_watchlist_json(watchlist_file)
-    #1-c. Import countries file.
+    # 1-c. Import countries file.
     countries_list = import_countries_json(countries_file)
 
-    #2. Now we have each file stored in Lists.  Loop through each traveler in the travelers list
+    # 2. Now we have each file stored in Lists.  Loop through each traveler in the travelers list
     #   and validate application information, then store the result to output list.
     output_results = []
     for traveler in travelers_list:
@@ -43,11 +44,11 @@ def decide(example_entries_file, watchlist_file, countries_file):
         else:  # continue next validation.
 
             #4. Check if 'from' or 'via' country has medical advisory. If yes, send to quarantine.
-           """
+            """
             """
         with open("countries.json", "r") as countries_file:
             #4-a. Get 'from' country code.
-            def from_country_code (reader):
+            def from_country_code(reader):
                 from_country_code = [traveler['country']]
 
         def medical_advisory_country(reader):
@@ -66,11 +67,12 @@ def decide(example_entries_file, watchlist_file, countries_file):
 
         if not is_countries_cleared(countries_list, from_country_code, via_country_code):
             # This traveler should be sent to Quarantine as the 'from' country or 'via' country has
-            def medical_advisory(reader): #do I change to counties cleared?
+            def medical_advisory(reader):  #do I change to counties cleared?
                 """
                 :param reader: file open for reading)-> list
             Read zero or more quarantine countries from reader, return a list
                 """
+
             result = []
             key, name = line.split()
             from_country_code = [name]
@@ -139,7 +141,6 @@ def import_watchlist_json(watchlist_file):
     :return: List with watchlist info.
     """
 
-
     with open(watchlist_file, "r") as file_reader:
         file_contents_watchlist = file_reader.read()
         watchlist_info = json.loads(file_contents_watchlist)
@@ -149,7 +150,6 @@ def import_watchlist_json(watchlist_file):
 
 
 def watchlist_file(import_watchlist_json, watchlist_list):
-
     for line in import_watchlist_json(watchlist_file):
         line = line.strip()
         if line != "-":
@@ -157,7 +157,8 @@ def watchlist_file(import_watchlist_json, watchlist_list):
         if watchlist_file.len > str(line[:0]):
             # we want to print the line that is longer than a certain amount because it has content thus an alert len function
             print(line)
-        #Thus this would return a line that would have the name or passport number of the person on the watchlist
+            # Thus this would return a line that would have the name or passport number of the person on the watchlist
+
 
 def import_countries_json(countries_file):
     """
@@ -185,9 +186,36 @@ def required_information_complete(traveler):
 
     :return: Boolean True if info is complete, False otherwise.
     """
-    #need a str statement to ensure info is str
+    # need a str statement to ensure info is str
 
-    with open(traveler, "r") as file_reader:
+
+with open(traveler, "r") as file_reader:
+    file_contents_input_file = file_reader.read()
+    travelers_info = json.loads(import_travelers_json)
+    travelers_list = {travelers_info}
+    # need a str statement o ensure info is str
+    result = []
+
+    if required_information_complete:
+        result.append(travelers_info)
+        while reading:
+            line = file_reader.readline()
+            if "passport":
+                result.__contains__("passport")
+                if len("passport") > 8:
+
+                    if "last_name":
+                        result.__contains__("last_name")
+                if len("last_name") > 9:
+
+                    if "first_name":
+                        result.__contains__("first_name")
+                if len("first_name") > 10:
+                    else:
+                        reading = False
+                return result
+
+""" with open(traveler, "r") as file_reader:
         file_contents_example_entries_file = file_reader.read()
         travelers_info = json.loads(file_contents_example_entries_file)
         travelers_list = [travelers_info]
@@ -204,6 +232,8 @@ def required_information_complete(traveler):
     else:
         reading = False
         return False
+"""
+
 
 def is_countries_cleared(countries_list, from_country, via_country):
     """
@@ -223,16 +253,16 @@ def is_countries_cleared(countries_list, from_country, via_country):
         print(data.rstrip())
 
     with open(countries_list, "r") as file_reader:
-            from_country = file_reader.read()
-            via_country = file_reader.read()
-            if from_country in countries_list:
-                countries_list [from_country] = countries_list [from_country] > 1
-    # Check via country
-            if via_country in countries_list:
-                countries_list [via_country] = countries_list [via_country] > 1
-      # If via country is empty, no need to validate.
-                if not via_country:
-                    return True  # temporary for testing
+        from_country = file_reader.read()
+        via_country = file_reader.read()
+        if from_country in countries_list:
+            countries_list[from_country] = countries_list[from_country] > 1
+            # Check via country
+        if via_country in countries_list:
+            countries_list[via_country] = countries_list[via_country] > 1
+            # If via country is empty, no need to validate.
+            if not via_country:
+                return True  # temporary for testing
 
 
 def is_watchlist_cleared(watchlist_list, passport_number, first_name, last_name):
@@ -245,14 +275,14 @@ def is_watchlist_cleared(watchlist_list, passport_number, first_name, last_name)
     """
     # check the passport number of passport watchlist
     # check the first_name of people on watchlist
-    #check the last_name of people on watchlist
+    # check the last_name of people on watchlist
     if passport_number != "":
         # passport number is available so check with passport number.
 
         return True  # TEMPORARY FOR TESTING!
     elif first_name != "" and last_name != "":
 
-        return True  #TEMPORARY FOR TESTING
+        return True  # TEMPORARY FOR TESTING
     else:
         # Passport number nor names are given so we cannot validate. Return False.
         return False
@@ -281,7 +311,7 @@ def is_visa_valid(countries_list, home_country, entry_reason, visa_date):
 
 
 def valid_passport_format(passport_number):
-    #Checks whether a passport number is five sets of five alpha-number characters separated by dashes
+    # Checks whether a passport number is five sets of five alpha-number characters separated by dashes
     """
     :param passport_number: alpha-numeric string
 
@@ -293,8 +323,6 @@ def valid_passport_format(passport_number):
         return True
     else:
         return False
-
-
 
 
 """
