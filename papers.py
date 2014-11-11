@@ -167,35 +167,8 @@ def required_information_complete(traveler):
 
     :return: Boolean True if info is complete, False otherwise.
     """
-    # need a str statement to ensure info is str
 
 
-    #with open(traveler, "r") as file_reader:
-    """
-    file_contents_input_file = file_reader.read()
-    travelers_info = json.loads(import_travelers_json)
-    travelers_list = {travelers_info}
-    # need a str statement o ensure info is str
-    """
-    #result = []
-    """
-    if required_information_complete:
-        result.append(travelers_info)
-        while reading:
-            line = file_reader.readline()
-            if "passport" in traveler.keys():
-                #result.__contains__("passport")
-                if len("passport") > 8:
-
-                    if "last_name":
-                        result.__contains__("last_name")
-                if len("last_name") > 9:
-
-                    if "first_name":
-                        result.__contains__("first_name")
-                elif len("first_name") > 10:
-                    reading = False
-    """
     if "passport" not in traveler.keys() or "first_name" not in traveler.keys() or "last_name" not in traveler.keys() \
             or "entry_reason" not in traveler.keys() or "birth_date" not in traveler.keys() or "home" not in \
             traveler.keys()  or "from" not in traveler.keys():
@@ -203,24 +176,6 @@ def required_information_complete(traveler):
     else:
         return True
 
-""" with open(traveler, "r") as file_reader:
-        file_contents_input_file = file_reader.read()
-        travelers_info = json.loads(file_contents_input_file)
-        travelers_list = [travelers_info]
-    for line in travelers_info:
-        if travelers_info: str("")
-
-    last_name = ()
-    first_name = ()
-    passport = ()
-
-    found = True
-    if last_name in travelers_info:
-       travelers_info[last_name] = travelers_info[last_name] > 1
-    else:
-        reading = False
-        return False
-"""
 
 
 def is_countries_cleared(countries_list, from_country, via_country):
@@ -232,7 +187,6 @@ def is_countries_cleared(countries_list, from_country, via_country):
     :return: Boolean True if medical advisory is cleared, False otherwise.
     """
     # Check from country.
-
     if countries_list[from_country]["medical_advisory"] != "":
         return False
 
@@ -256,18 +210,6 @@ def is_watchlist_cleared(watchlist_list, passport_number, first_name, last_name)
     # check the passport number of passport watchlist
     # check the first_name of people on watchlist
     # check the last_name of people on watchlist
-    """
-    if passport_number != "":
-        # passport number is available so check with passport number.
-
-        return True  # TEMPORARY FOR TESTING!
-    elif first_name != "" and last_name != "":
-
-        return True  # TEMPORARY FOR TESTING
-    else:
-        # Passport number nor names are given so we cannot validate. Return False.
-        return False
-    """
 
     for entry_in_watchlist in watchlist_list:
         if passport_number == entry_in_watchlist["passport"] or \
