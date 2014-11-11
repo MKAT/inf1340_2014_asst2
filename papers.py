@@ -12,11 +12,11 @@ __status__ = "Prototype"
 
 import json
 
-def decide(input_file, watchlist_file, countries_file):
+def decide(example_entries_file, watchlist_file, countries_file):
     """
     Decides whether a traveller's entry into Kanadia should be accepted
 
-    :param input_file: The name of a JSON formatted file that contains cases to decide
+    :param example_entries_file: The name of a JSON formatted file that contains cases to decide
     :param watchlist_file: The name of a JSON formatted file that contains names and passport numbers on a watchlist
     :param countries_file: The name of a JSON formatted file that contains country data, such as whether
         an entry or transit visa is required, and whether there is currently a medical advisory
@@ -25,7 +25,7 @@ def decide(input_file, watchlist_file, countries_file):
     # 1. Import JSON file contents into string list.
 
     # #1-a. Import travelers' info.
-    travelers_list = import_travelers_json(input_file)
+    travelers_list = import_travelers_json(example_entries_file)
     #1-b. Import watchlist file.
     watchlist_list = import_watchlist_json(watchlist_file)
     #1-c. Import countries file.
@@ -116,17 +116,17 @@ def decide(input_file, watchlist_file, countries_file):
     return output_results
 
 
-def import_travelers_json(input_file):
+def import_travelers_json(example_entries_file):
     """
     imports travelers' data from JSON file.
-    :param input_file:
+    :param example_entries_file:
     :return: List with travelers data.
     """
 
     # The below calls the json file to be read
-    with open(input_file, "r") as file_reader:
-        file_contents_input_file = file_reader.read()
-        travelers_info = json.loads(file_contents_input_file)
+    with open(example_entries_file, "r") as file_reader:
+        file_contents_example_entries_file = file_reader.read()
+        travelers_info = json.loads(file_contents_example_entries_file)
         travelers_list = [travelers_info]
         # print(travelers_list)
         return travelers_list
@@ -188,8 +188,8 @@ def required_information_complete(traveler):
     #need a str statement to ensure info is str
 
     with open(traveler, "r") as file_reader:
-        file_contents_input_file = file_reader.read()
-        travelers_info = json.loads(file_contents_input_file)
+        file_contents_example_entries_file = file_reader.read()
+        travelers_info = json.loads(file_contents_example_entries_file)
         travelers_list = [travelers_info]
     for line in travelers_info:
         if travelers_info: str("")
